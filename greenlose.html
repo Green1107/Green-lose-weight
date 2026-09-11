@@ -633,8 +633,10 @@ function renderHistory() {
   const sortedAsc = [...records].sort((a,b) => a.date.localeCompare(b.date));
   // 倒序展示（最新的在前面）
   const sorted = [...sortedAsc].reverse();
+  // ★ 新增：只显示最新10条
+  const showList = sorted.slice(0, 10);
 
-  box.innerHTML = sorted.map(r => {
+  box.innerHTML = showList.map(r => {
     // 找当前记录在正序数组中的索引
     const idx = sortedAsc.findIndex(x => x.date === r.date);
     // 前一天 = 正序中前一条
